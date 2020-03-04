@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="wrapper">
+        {% if not error %}
+            <div class="cl">
+                <h2 class="h2">{{ city }}</h2>
+            </div>
+
+
+            {% if user.is_authenticated %}
+                {% if city_in_favourites  %}
+                    <div class="favourite">
+                        <a class="fav" href="{% url 'delete_city_view' city %}">Remove from favourites</a>
+                    </div>
+                {% else %}
+                    <div class="favourite">
+                        <a class="fav" href="{% url 'added_city_view' city %}">Add to favourites</a>
+                    </div>
+                {% endif %}
+            {%  endif %}
+
+            <div class="data">
+                <h3 class="date">Date: {{ today_day }}</h3>
+                <p class="topic">Temperature: {{ today_temp }}°</p>
+                <p class="topic">Wind speed: {{ current_wind }} mps</p>
+                <p class="topic">Description: {{ current_description }}</p>
+            </div>
+
+            {% for day in weather_ready %}
+                <div class="data">
+                    <h3 class="date">Date: {{ day.dt_txt }}</h3>
+                    <p class="topic">Temperature: {{ day.main.temp }}°</p>
+                    <p class="topic">Wind speed: {{ day.wind.speed }} mps</p>
+                    <p class="topic">Description: : {{ day.weather.0.description }}</p>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <h1>{{ error }}</h1>
+        {% endif %}
+    </div>
+
+
+{% endblock content %}

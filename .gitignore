@@ -1,0 +1,16 @@
+.idea/*
+new_venv/*
+venv/*
+users/__pycache__/*
+users/migrations/__pycache__/*
+weather/__pycache__/*
+weather/migrations/__pycache__/*
+weather_site/__pycache__/*
+
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+weather_site/.env
+staticfiles/admin/*
